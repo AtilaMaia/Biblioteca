@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1 class="mt-5">Acervo</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Editora</th>
+      <th>Gênero</th>
+      <th>Situação</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for titulo in titulo  %}
+      <tr>
+        <td>
+          <a>{{ titulo.id}}</a>
+        </td>
+        
+          <td>
+            <a href="{% url 'specs' titulo.id %}"> {{titulo.livro}}</a>
+          </td>
+          <td>
+            <a>{{ titulo.autor}}</a>
+          </td>
+          <td>
+            <a>{{titulo.editora}}</a>
+
+            </td>
+          <td>{{titulo.genero}}</td>
+          <td>{{titulo.sit}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if titulo.has_previous  %}
+    
+    <li class="page-item">
+      <a class="page-link" href="?p={{ titulo.previous_page_number}}&termo={{ request.GET.termo }}">Anterior</a></li>
+    </li>
+    {%endif%}
+    
+    {% for pagina in titulo.paginator.page_range%}
+        {% if titulo.number == pagina%}    
+    
+        <li class="page-item active">
+          <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
+        </li>
+
+        {% else%}
+
+          <li class="page-item">
+          <a class="page-link" href="?p={{ pagina}}&termo={{ request.GET.termo }}">{{pagina}}</a>
+        </li>
+
+        {% endif %}
+    
+        {%endfor%}
+    {% if titulo.has_next  %}
+    <li class="page-item ">
+      <a class="page-link" href="?p={{titulo.next_page_number }}&termo={{ request.GET.termo }}">proxima</a>
+    </li>
+    {%endif%}
+  </ul>
+</nav>
+
+{% endblock%}
+

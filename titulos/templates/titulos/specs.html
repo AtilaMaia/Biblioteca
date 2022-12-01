@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+
+{% block conteudo%}
+
+        <h1 class="mt-5">{{titulo.livro}} </h1>
+            {{titulo.autor}}
+        <dl>
+          <dt>ID</dt>
+          <dd>{{titulo.id}}</dd>
+
+          <dt>Titulo</dt>
+          <dd>{{titulo.livro}}</dd>
+
+          <dt>Autor</dt>
+          <dd>{{titulo.autor}}</dd>
+
+          <dt>Data do emprestimo</dt>
+          <dd>{{titulo.data_emprestimo|date:'d/m/Y H:m:s'}}</dd>
+          
+          
+          <dt>Data do emprestimo</dt>
+          <dd>{{titulo.data_emprestimo|date:'d/m/Y H:m:s'}}</dd>
+          
+          <dt>Genero</dt>
+          <dd>{{titulo.genero}}</dd>
+
+          <dt>Descrição</dt>
+          <dd>
+            {{titulo.descricao}}
+          </dd>
+
+          <dt>Situação</dt>
+          <dd>
+            {{titulo.sit}}
+          </dd>
+        </dl>
+
+
+
+{%endblock%}
